@@ -36,10 +36,25 @@ public class StringManipulator {
         return duplicates;
     }
 
+    public int countVowels(String input) {
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
+
+        int count = 0;
+        String vowels = "aeiouAEIOU";
+
+        for (char ch : input.toCharArray()) {
+            if (vowels.contains(String.valueOf(ch))) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         StringManipulator sm = new StringManipulator();
-        FindDuplicate fd = new FindDuplicate();
-
 
         // Reverse string example
         Scanner scanner = new Scanner(System.in);
@@ -63,8 +78,16 @@ public class StringManipulator {
         }
 
         // Find the duplicate numbers
-        List<Integer> duplicateNumbers = fd.findDuplicates(numbers);
+        List<Integer> duplicateNumbers = sm.findDuplicates(numbers);
         System.out.println("Duplicate Numbers: " + duplicateNumbers);
+
+        scanner.nextLine(); // Consume the newline character
+
+        // Count number of vowels in String
+        System.out.print("Enter a string to count vowels: ");
+        String testString = scanner.nextLine();
+        int vowelCount = sm.countVowels(testString);
+        System.out.println("Number of Vowels in '" + testString + "': " + vowelCount);
 
         scanner.close();
     }
